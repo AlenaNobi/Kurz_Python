@@ -14,11 +14,11 @@ class Property(ABC):
         self.locality = locality
     
     @abstractmethod
-    def __str__():
+    def __str__(self):
         pass
 
     @abstractmethod
-    def calculate_tax():
+    def calculate_tax(self):
         pass
 
 class Estate(Property): 
@@ -28,9 +28,8 @@ class Estate(Property):
         self.area = area 
 
     def __str__(self):
-        return f"Typ pozemnku je {self.estate_type}, lokalita {self.locality.name} ({self.locality.locality_coefficient}), {self.area} metrů čtverečních, {self.calculate_tax}."
+        return f"Typ pozemnku je {self.estate_type}, lokalita {self.locality.name} ({self.locality.locality_coefficient}), {self.area} metrů čtverečních, {self.calculate_tax()}."
 
-    @property
     def calculate_tax(self):
         if self.estate_type == "land":
             tax = math.ceil(self.area*0.85*self.locality.locality_coefficient) 
@@ -52,13 +51,13 @@ class Residence(Property):
         self.commercial = commercial
 
     def __str__(self):
-        return f"Typ pozemku je {self.estate_type}, lokalita {self.locality.name} ({self.locality.locality_coefficient}), {self.area} metrů čtverečních, {self.calculate_tax}."
+        property_type = "Komerční nemovitost" if self.commercial else "Bytová nemovitost"
+        return f"{property_type} v lokalitě {self.locality.name} ({self.locality.locality_coefficient}), {self.area} m², daň: {self.calculate_tax()} Kč."
 
-    @property
     def calculate_tax(self):
-        for item in list:
-            tax = (self.area*self.locality.locality_coefficient*15)
-            if hasattr(item, "commercial") and self.commercial == "commercial":
+        for item in properties_list:
+            tax = math.ceil(self.area*self.locality.locality_coefficient*15)
+            if self.commercial:
              tax = tax*2
         return f"daň {tax}"
 
@@ -66,29 +65,32 @@ class Residence(Property):
 #příklad výpočtu
 locality2 = Locality('locality2', 2)
 les1 = Estate(locality2, 'forrest', 500)
-print(les1.calculate_tax)
+print(les1.calculate_tax())
 
 #příklad výpočtu
 locality3 = Locality('locality_3', 3)
-byt1 = Residence(locality3, 60, "commercial")
-list = []
-list.append(byt1)
-#list = [byt1]
-print(byt1.calculate_tax)
+byt1 = Residence(locality3, 60, commercial=True)
+properties_list = []
+properties_list.append(byt1)
+#properties_list = [byt1]
+print(byt1.calculate_tax())
 
 #Vyzkoušej svůj program pomocí následujících nemovitostí: 
 manetin = Locality('Manětín', 0.8)
 zemedelsky_pozemek = Estate(manetin, 'land', 900)
-print(zemedelsky_pozemek.calculate_tax)
+print(zemedelsky_pozemek.calculate_tax())
 
-dum1 = Residence(manetin, 120, "none")
-list.append(dum1)
-print(dum1.calculate_tax)
+dum1 = Residence(manetin, 120, commercial=False)
+properties_list.append(dum1)
+print(dum1.calculate_tax())
 
 brno = Locality('Brno', 3)
-kancelar1 = Residence(brno, 90, "commercial")
-list.append(kancelar1)
-print(kancelar1.calculate_tax)
+kancelar1 = Residence(brno, 90, commercial=True)
+properties_list.append(kancelar1)
+print(kancelar1.calculate_tax())
 
 print(les1)
 print(zemedelsky_pozemek)
+print(dum1)
+print(kancelar1)
+
