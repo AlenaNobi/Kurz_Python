@@ -3,7 +3,7 @@ https://www.czechitas.cz/kurzy/programovani-v-pythonu
 - rozsah přímé výuky 30 hodin, plus práce na domácích úkolech
 - výuka obshaovala výklad od lektora a práci v menších týmech pod vedením kouče (cvičení)
 - každá hodina byla zakončena kvízem zaměřeným na teorii i praxi (napsat část kódu)
-- součástí kurzu byly dva vetší úkoly, které jsme každý vypracovali sám a poté nám přidělený kouč dal zpětnou vazbu přes issue
+- součástí kurzu byly dva vetší úkoly (ukol.py, ukol2.py), které jsme každý vypracovali sám a poté nám přidělený kouč dal zpětnou vazbu přes issue
 
 Obsah kurzu
 - Úvod: Opakování základů, slicing, metody, moduly
